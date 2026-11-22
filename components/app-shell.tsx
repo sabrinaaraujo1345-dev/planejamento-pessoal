@@ -12,7 +12,7 @@ import {
   Menu,
   Repeat,
   ShieldCheck,
-  Sparkles,
+  Globe2,
   Wallet,
   X,
 } from "lucide-react";
@@ -20,12 +20,48 @@ import { signOut } from "@/app/login/actions";
 import { DataMenu } from "@/components/data-menu";
 
 const NAV = [
-  { href: "/dashboard", label: "Visão Geral", icon: LayoutDashboard, title: "Visão Geral", accent: "indigo" },
-  { href: "/planejamento", label: "Planejamento & Metas", icon: CalendarCheck2, title: "Planejamento & Metas", accent: "indigo" },
-  { href: "/estudos", label: "Estudos", icon: GraduationCap, title: "Estudos", accent: "indigo" },
-  { href: "/financas", label: "Finanças", icon: Wallet, title: "Finanças Pessoais", accent: "emerald" },
-  { href: "/apartamento", label: "Meu Apartamento", icon: Home, title: "Meu Apartamento", accent: "amber" },
-  { href: "/rotina", label: "Rotina & Hábitos", icon: Repeat, title: "Rotina, Hábitos & Desenvolvimento", accent: "indigo" },
+  {
+    href: "/dashboard",
+    label: "Visão Geral",
+    icon: LayoutDashboard,
+    title: "Visão Geral",
+    accent: "indigo",
+  },
+  {
+    href: "/planejamento",
+    label: "Planejamento & Metas",
+    icon: CalendarCheck2,
+    title: "Planejamento & Metas",
+    accent: "indigo",
+  },
+  {
+    href: "/estudos",
+    label: "Estudos",
+    icon: GraduationCap,
+    title: "Estudos",
+    accent: "indigo",
+  },
+  {
+    href: "/financas",
+    label: "Finanças",
+    icon: Wallet,
+    title: "Finanças Pessoais",
+    accent: "emerald",
+  },
+  {
+    href: "/apartamento",
+    label: "Meu Apartamento",
+    icon: Home,
+    title: "Meu Apartamento",
+    accent: "amber",
+  },
+  {
+    href: "/rotina",
+    label: "Rotina & Hábitos",
+    icon: Repeat,
+    title: "Rotina, Hábitos & Desenvolvimento",
+    accent: "indigo",
+  },
 ] as const;
 
 const ACTIVE: Record<string, string> = {
@@ -34,7 +70,13 @@ const ACTIVE: Record<string, string> = {
   amber: "bg-amber-500/15 text-amber-300 border-amber-500/35",
 };
 
-export function AppShell({ children, dateLabel }: { children: React.ReactNode; dateLabel: string }) {
+export function AppShell({
+  children,
+  dateLabel,
+}: {
+  children: React.ReactNode;
+  dateLabel: string;
+}) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
   const current = NAV.find((n) => pathname.startsWith(n.href)) ?? NAV[0];
@@ -57,13 +99,15 @@ export function AppShell({ children, dateLabel }: { children: React.ReactNode; d
         <div className="h-16 px-5 flex items-center justify-between border-b border-surface-700">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-brand to-violet-600 flex items-center justify-center shadow-lg shadow-indigo-500/20">
-              <Sparkles className="w-4 h-4 text-white" />
+              <Globe2 className="w-4 h-4 text-white" />
             </div>
             <div>
               <span className="font-bold text-sm tracking-tight text-white block">
-                LifeOS <span className="text-brand">Personal</span>
+                Meu <span className="text-brand">Planejamento</span>
               </span>
-              <span className="text-[11px] text-zinc-400 block">Privado • só você</span>
+              <span className="text-[11px] text-zinc-400 block">
+                Privado • só você
+              </span>
             </div>
           </div>
           <button
@@ -75,7 +119,10 @@ export function AppShell({ children, dateLabel }: { children: React.ReactNode; d
           </button>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-1" aria-label="Módulos">
+        <nav
+          className="flex-1 overflow-y-auto px-3 py-4 space-y-1"
+          aria-label="Módulos"
+        >
           {NAV.map(({ href, label, icon: Icon, accent }) => {
             const active = pathname.startsWith(href);
             return (
@@ -120,7 +167,9 @@ export function AppShell({ children, dateLabel }: { children: React.ReactNode; d
             >
               <Menu className="w-5 h-5" />
             </button>
-            <h1 className="text-base sm:text-lg font-semibold text-white truncate">{current.title}</h1>
+            <h1 className="text-base sm:text-lg font-semibold text-white truncate">
+              {current.title}
+            </h1>
           </div>
           <div className="flex items-center gap-3 text-xs text-zinc-400">
             <span className="hidden sm:block capitalize">{dateLabel}</span>
